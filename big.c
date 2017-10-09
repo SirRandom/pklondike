@@ -123,12 +123,17 @@ void queryuser(void)
 	}
 }
 
-void parsecmd(void)
+int parsecmd(void)
 {
-	
+	// todo: write functionality :^)
 }
 
 void executecmd(void)
 {
 	int cmd = parsecmd();
+	
+	switch(cmd)
+	{
+		// todo: add cmd cases
+	}
 }
