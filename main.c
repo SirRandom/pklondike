@@ -4,7 +4,7 @@ int main(void)
 {
 	init();
 	
-	while(1)
+	while(run)
 	{
 		render();
 		queryuser();

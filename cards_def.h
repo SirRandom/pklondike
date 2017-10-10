@@ -29,31 +29,5 @@
 
 #define FONT_SIZE		16
 
-#define CMD_QUIT		1
-#define CMD_HELP		2
-#define CMD_NEWGAME	3
-#define CMD_DEAL		4
-#define CMD_POPS0		5
-#define CMD_POPS1		6
-#define CMD_POPS2		7
-#define CMD_POPS3		8
-#define CMD_POPS4		9
-#define CMD_POPS5		10
-#define CMD_POPS6		11
-#define CMD_PUSHS0	12
-#define CMD_PUSHS1	13
-#define CMD_PUSHS2	14
-#define CMD_PUSHS3	15
-#define CMD_PUSHS4	16
-#define CMD_PUSHS5	17
-#define CMD_PUSHS6	18
-#define CMD_PUSHF0	19
-#define CMD_PUSHF1	20
-#define CMD_PUSHF2	21
-#define CMD_PUSHF3	22
-#define CMD_POPW		23
-#define CMD_PUSHW		24
-#define CMD_RECYCLE	25
-
 #define __CARDS_DEF__
 #endif

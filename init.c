@@ -1,5 +1,6 @@
 #include "cards.h"
 
+void initff(void);
 void initdeck(void);
 void swapcardptr(card**, card**);
 void initstacks(void);
@@ -18,8 +19,7 @@ void init(void)
 	
 	srand(time(NULL));
 	
-	nullcard = makecard(0, 0);
-	userinput = malloc(22 * sizeof(unsigned char));
+	initff();
 	
 	setfont();
 	setcursor();
@@ -30,6 +30,13 @@ void init(void)
 	initstacks();
 	setupboard();
 	SetConsoleTitle("Klondike");
+}
+
+void initff(void)
+{
+	nullcard = makecard(0, 0);
+	userinput = malloc(22 * sizeof(unsigned char));
+	undostack.cmds = malloc(undostack.len = 0);
 }
 
 void setcursor(void)

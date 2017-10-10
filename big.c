@@ -1,6 +1,7 @@
 #include "cards.h"
 
 #define CUR(x,y) SetConsoleCursorPosition(conout, (COORD){(x),(y)})
+#define STREQ(a, b) (strcmp((a), (b)) == 0)
 
 void clearscreen(void);
 
@@ -16,6 +17,10 @@ void render(void)
 	speek(s5) -> vis = 1;
 	speek(s6) -> vis = 1;
 	
+	if(w -> len > 0)
+		for(unsigned i = 0; i < 3; i++)
+			sget(w, (w -> len - 1) - i) -> vis = 1;
+	
 	// draw pile: d
 	CUR(0,0);
 	if(d -> len > 0)
@@ -25,20 +30,11 @@ void render(void)
 	
 	// waste pile: w
 	CUR(3,0);
-	if(w -> len > 0)
-	{
-		for(unsigned i = 0; i < 3; i++)
-			if(i < w -> len)
-				cprint(sget(w, i));
-			else
-				cprint(nullcard);
-	}
-	else
-	{
-		cprint(nullcard);
-		cprint(nullcard);
-		cprint(nullcard);
-	}
+	for(unsigned i = 0; i < 3; i++)
+		if(i < w -> len)
+			cprint(sget(w, i));
+		else
+			cprint(nullcard);
 	
 	// foundations: f0-f3
 	CUR(12,0);
@@ -65,10 +61,13 @@ void render(void)
 	// tableau: tableau (s0-s6)
 	for(unsigned i = 0; i < 7; i++)
 	{
-		for(unsigned j = 0; j < (tableau[i] -> len); j++)
+		if(tableau[i] -> len > 0)
 		{
-			CUR(i * 3, j + 2);
-			cprint(sget(tableau[i], j));
+			for(unsigned j = 0; j < (tableau[i] -> len); j++)
+			{
+				CUR(i * 3, j + 2);
+				cprint(sget(tableau[i], j));
+			}
 		}
 	}
 	
@@ -97,7 +96,7 @@ void queryuser(void)
 	INPUT_RECORD ir;
 	
 	for(unsigned i = 0; i < 22; i++)
-		userinput[i] = ' ';
+		userinput[i] = '\0';
 	
 	while(1)
 	{
@@ -112,28 +111,13 @@ void queryuser(void)
 			else if(ir.Event.KeyEvent.wVirtualKeyCode == VK_ESCAPE)
 			{
 				for(unsigned i = 0; i < 22; i++)
-					userinput[i] = ' ';
+					userinput[i] = '\0';
 				inputlen = 0;
 			}
 			else if(ir.Event.KeyEvent.wVirtualKeyCode == VK_BACK && inputlen > 0)
-				userinput[--inputlen] = ' ';
+				userinput[--inputlen] = '\0';
 			
 			WriteConsoleOutputCharacter(conout, userinput, 22, (COORD) {1, 22}, &useless);
 		}
-	}
-}
-
-int parsecmd(void)
-{
-	// todo: write functionality :^)
-}
-
-void executecmd(void)
-{
-	int cmd = parsecmd();
-	
-	switch(cmd)
-	{
-		// todo: add cmd cases
 	}
 }
