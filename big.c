@@ -123,7 +123,7 @@ void queryuser(void)
 	}
 }
 
-void parsecmd(void)
+int parsecmd(void)
 {
 	
 }
