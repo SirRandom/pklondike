@@ -14,8 +14,14 @@ void setcursor(void);
 
 void init(void)
 {
-	conout = GetStdHandle(STD_OUTPUT_HANDLE);
-	conin  = GetStdHandle(STD_INPUT_HANDLE);
+	if(conout == NULL || conin == NULL)
+	{
+		conout = GetStdHandle(STD_OUTPUT_HANDLE);
+		conin  = GetStdHandle(STD_INPUT_HANDLE);
+	}
+	
+	run = 1;
+	ng = 0;
 	
 	srand(time(NULL));
 	

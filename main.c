@@ -2,6 +2,7 @@
 
 int main(void)
 {
+begin:
 	init();
 	
 	while(run)
@@ -9,6 +10,11 @@ int main(void)
 		render();
 		queryuser();
 		executecmd();
+		if(ng)
+		{
+			cleanup();
+			goto begin;
+		}
 	}
 	
 	cleanup();

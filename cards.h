@@ -33,6 +33,7 @@ extern HANDLE conin;
 
 extern cmdstack undostack;
 
+extern DWORD ng;
 extern DWORD run;
 extern card* nullcard;
 extern card** deck;

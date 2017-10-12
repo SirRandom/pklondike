@@ -29,5 +29,38 @@
 
 #define FONT_SIZE		16
 
+#define CMD_QUIT		0
+#define CMD_HELP		1
+#define CMD_NEWGAME	2
+#define CMD_DEAL		3
+#define CMD_POPS0		4
+#define CMD_POPS1		5
+#define CMD_POPS2		6
+#define CMD_POPS3		7
+#define CMD_POPS4		8
+#define CMD_POPS5		9
+#define CMD_POPS6		10
+#define CMD_POPALLS0	11
+#define CMD_POPALLS1	12
+#define CMD_POPALLS2	13
+#define CMD_POPALLS3	14
+#define CMD_POPALLS4	15
+#define CMD_POPALLS5	16
+#define CMD_POPALLS6	17
+#define CMD_PUSHS0	18
+#define CMD_PUSHS1	19
+#define CMD_PUSHS2	20
+#define CMD_PUSHS3	21
+#define CMD_PUSHS4	22
+#define CMD_PUSHS5	23
+#define CMD_PUSHS6	24
+#define CMD_PUSHF0	25
+#define CMD_PUSHF1	26
+#define CMD_PUSHF2	27
+#define CMD_PUSHF3	28
+#define CMD_POPW		29
+#define CMD_UNDO		30
+#define CMD_RECYCLE	31
+
 #define __CARDS_DEF__
 #endif

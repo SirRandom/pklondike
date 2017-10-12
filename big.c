@@ -7,61 +7,65 @@ void clearscreen(void);
 
 void render(void)
 {
+	//clear the screen
 	clearscreen();
 	
-	speek(s0) -> vis = 1;
-	speek(s1) -> vis = 1;
-	speek(s2) -> vis = 1;
-	speek(s3) -> vis = 1;
-	speek(s4) -> vis = 1;
-	speek(s5) -> vis = 1;
-	speek(s6) -> vis = 1;
-	
-	if(w -> len > 0)
-		for(unsigned i = 0; i < 3; i++)
-			sget(w, (w -> len - 1) - i) -> vis = 1;
+	// if active stack empty, reveal top card of each stack if such a card exists
+	if(a -> len == 0)
+	{
+		if(s0 -> len > 0)
+			speek(s0) -> vis = 1;
+		if(s1 -> len > 0)
+			speek(s1) -> vis = 1;
+		if(s2 -> len > 0)
+			speek(s2) -> vis = 1;
+		if(s5 -> len > 0)
+			speek(s5) -> vis = 1;
+		if(s6 -> len > 0)
+			speek(s6) -> vis = 1;
+		if(s3 -> len > 0)
+			speek(s3) -> vis = 1;
+		if(s4 -> len > 0)
+			speek(s4) -> vis = 1;
+	}
 	
 	// draw pile: d
 	CUR(0,0);
 	if(d -> len > 0)
 		cprint(speek(d));
-	else
-		cprint(nullcard);
 	
 	// waste pile: w
-	CUR(3,0);
-	for(unsigned i = 0; i < 3; i++)
-		if(i < w -> len)
-			cprint(sget(w, i));
-		else
-			cprint(nullcard);
+	{
+		unsigned x;
+		for(unsigned i = 1; i < 4; i++)
+			if((x = (w -> len) - i) < (w -> len)) // if xth card from top of waste pile exists...
+			{
+				CUR(7 - (2 * (i - 1)), 0);
+				cprint(sget(w, x));
+			}
+	}
 	
 	// foundations: f0-f3
 	CUR(12,0);
 	if(f0 -> len > 0)
 		cprint(speek(f0));
-	else
-		cprint(nullcard);
 	
 	if(f1 -> len > 0)
 		cprint(speek(f1));
-	else
-		cprint(nullcard);
 	
 	if(f2 -> len > 0)
 		cprint(speek(f2));
-	else
-		cprint(nullcard);
 	
 	if(f3 -> len > 0)
 		cprint(speek(f3));
-	else
-		cprint(nullcard);
 	
 	// tableau: tableau (s0-s6)
+	// s0
+	
+	
 	for(unsigned i = 0; i < 7; i++)
 	{
-		if(tableau[i] -> len > 0)
+		if((tableau[i] -> len) > 0)
 		{
 			for(unsigned j = 0; j < (tableau[i] -> len); j++)
 			{
